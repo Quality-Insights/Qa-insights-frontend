@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/Qa-insights-frontend/  # Destination directory on the target instance
+
+hooks:
+  AfterInstall:
+    - location: deploy/after_install.sh  # Script to install dependencies on the target instance
+      timeout: 300
+      runas: ubuntu  # Replace with the appropriate user
+  ApplicationStart:
+    - location: deploy/run_test.sh  # Script to start the server after deployment
+      timeout: 300
+      runas: ubuntu  # Replace with the appropriate user

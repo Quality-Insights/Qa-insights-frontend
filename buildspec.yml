@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - rm -rf *  # Clear the repository if there are any existing files
+      - git clone https://github.com/daringjoker/Qa-insights-frontend .  # Clone the repository into the current directory
+
+  build:
+    commands:
+      - npm install  # Install dependencies
+      - npm test
+      # - npm test > Qa-insights-frontend/mochawesome-report/test-results.log  # Run test cases and save results to a log file
+
+  post_build:
+    commands:
+      # Upload test-results.log to S3 bucket with build ID appended
+      - aws s3 cp Qa-insights-frontend/mochawesome-report/test-results.log s3://qa-cypress-logs/${CODEBUILD_BUILD_ID}/test-results.log
+      # Run Newman tests and save results to a JSON file
+      # - newman run <postman_collection_url> --reporters cli,json --reporter-json-export newman-results.json
+      # Upload newman-results.json to another S3 bucket
+      # - aws s3 cp newman-results.json s3://<second_bucket_name>/newman-results.json
