@@ -22,27 +22,50 @@ function prepareResult(cypressResult) {
   };
 
   const tests = [];
+  const testCases = [];
 
   for(const result of results) {
     const { file, suites } = result;
 
     for(const suite of suites) {
-      const { uuid, title, duration } = suite;
+      const { uuid, title, duration, tests: rawTests } = suite;
 
       const test = {
-        uuid: uuid,
+        id: uuid,
         title: title,
         duration: duration,
         file: file,
         build_id: buildid
       }
       tests.push(test);
+
+      for(const rawTest of rawTests) {
+        const { title, fullTitle, timedOut, duration, state, speed, pass, fail, pending, uuid, parentUUID, skipped, code } = rawTest;
+
+        const testCase = {
+          title: title,
+          fulltitle: fullTitle,
+          timedout: timedOut,
+          duration: duration,
+          state: state,
+          speed: speed,
+          pass: pass,
+          fail: fail,
+          pending: pending,
+          id: uuid,
+          suites_id: parentUUID,
+          skipped: skipped,
+          err_message: code,
+        }
+        testCases.push(testCase)
+      }
     }
   }
 
   const payload = {
     buildStats,
     tests,
+    testCases
   }
 
   return payload;
