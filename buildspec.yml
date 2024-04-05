@@ -4,10 +4,11 @@ phases:
   pre_build:
     commands:
       - rm -rf *  # Clear the repository if there are any existing files
-      - git clone https://github.com/Quality-Insights/Qa-insights-frontend.git .  # Clone the repository into the current directory
+      - git clone https://github.com/Quality-Insights/Qa-insights-frontend.git  # Clone the repository into the current directory
 
   build:
     commands:
+      - cd Qa-insights-frontend
       - npm install  # Install dependencies
       - npm test
       # - npm test > Qa-insights-frontend/mochawesome-report/test-results.log  # Run test cases and save results to a log file
