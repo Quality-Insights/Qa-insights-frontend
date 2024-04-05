@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 describe('Second failing Suite ', () => {
   it('First test of second failing suite', () => {
-    expect('Hello').to.eql('Hi')
+    expect('Hi').to.eql('Hi')
   })
   it('second test of second failing suite', () => {
-    expect('Hi world').to.eql('Hello world')
+    expect('Hello world').to.eql('Hello world')
   })
 })
