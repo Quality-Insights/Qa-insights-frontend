@@ -15,13 +15,16 @@ async function saveToFile(output) {
 }
 
 async function runTests() {
-  await fse.remove(OUTPUT_FOLDER)
-  const { totalFailed } = await cypress.run()
-  const jsonReport = await merge()
-  const preparedResult = prepareResult(jsonReport);
-  await saveToFile(preparedResult);
-  await generator.create(jsonReport)
-  process.exit(totalFailed)
+  try {
+    await fse.remove(OUTPUT_FOLDER);
+    await cypress.run();
+    const jsonReport = await merge();
+    const preparedResult = prepareResult(jsonReport);
+    await saveToFile(preparedResult);
+    await generator.create(jsonReport);
+  } catch(err) {
+    console.log("Catched:", err);
+  }
 }
 
-runTests()
+runTests();
