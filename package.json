@@ -1,0 +1,24 @@
+{
+  "name": "qa-insights-frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:ci": "cypress run",
+    "test:ci:record": "cypress run --record",
+    "test": "node testRunner.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cypress": "^13.7.2",
+    "fs-extra": "^11.2.0",
+    "jmespath": "^0.16.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
