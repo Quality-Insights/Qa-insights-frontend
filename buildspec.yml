@@ -15,9 +15,9 @@ phases:
 
   post_build:
     commands:
-      - pwd
+      - ls
       # Upload test-results.log to S3 bucket with build ID appended
-      - aws s3 cp mochawesome-report/test-results.log s3://qa-cypress-logs/${CODEBUILD_BUILD_ID}/test-results.log
+      - aws s3 cp ./mochawesome-report/test-results.log s3://qa-cypress-logs/${CODEBUILD_BUILD_ID}/test-results.log
       # Run Newman tests and save results to a JSON file
       # - newman run <postman_collection_url> --reporters cli,json --reporter-json-export newman-results.json
       # Upload newman-results.json to another S3 bucket
