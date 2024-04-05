@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - rm -rf *  # Clear the repository if there are any existing files
-      - git clone https://github.com/daringjoker/Qa-insights-frontend .  # Clone the repository into the current directory
+      - git clone https://github.com/Quality-Insights/Qa-insights-frontend.git .  # Clone the repository into the current directory
 
   build:
     commands:
