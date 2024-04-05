@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - rm -rf *  # Clear the repository if there are any existing files
       - git clone https://github.com/Quality-Insights/Qa-insights-frontend.git  # Clone the repository into the current directory
 
