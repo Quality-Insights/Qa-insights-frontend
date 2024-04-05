@@ -5,7 +5,7 @@ const generator = require('mochawesome-report-generator');
 const { prepareResult } = require('./util');
 
 const OUTPUT_FOLDER = 'mochawesome-report';
-const OUTPUT_FILENAME = 'output.json';
+const OUTPUT_FILENAME = 'test-results.log';
 const OUTPUT_FILEPATH = [OUTPUT_FOLDER, OUTPUT_FILENAME].join("/");
 
 async function saveToFile(output) {
