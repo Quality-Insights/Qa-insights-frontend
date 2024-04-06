@@ -3,14 +3,14 @@ const { randomUUID } = require("crypto");
 function prepareResult(cypressResult) {
   const { stats, results } = cypressResult;
   
-  const buildid = randomUUID();  // Using a random uuid as buildId (buildId not found in logs.)
+  const buildId = randomUUID();  // Using a random uuid as buildId (buildId not found in logs.)
   const buildStats = {
-    buildid: buildid,
+    build_id: buildId,
     startdatetime: stats.start,
     enddatetime: stats.end,
     duration: stats.duration,
-    suits: stats.suites,
-    tests: stats.tests,
+    suitescount: stats.suites,
+    tescount: stats.tests,
     passescount: stats.passes,
     pendingcount: stats.pending,
     failurecount: stats.failures,
@@ -31,11 +31,11 @@ function prepareResult(cypressResult) {
       const { uuid, title, duration, tests: rawTests } = suite;
 
       const test = {
-        id: uuid,
-        title: title,
+        test_id: uuid,
+        name: title,
         duration: duration,
         file: file,
-        build_id: buildid
+        build_id: buildId
       }
       tests.push(test);
 
@@ -44,17 +44,17 @@ function prepareResult(cypressResult) {
 
         const testCase = {
           title: title,
-          fulltitle: fullTitle,
+          full_title: fullTitle,
           timedout: timedOut,
           duration: duration,
           state: state,
           speed: speed,
-          pass: pass,
+          is_pass: pass,
           fail: fail,
           pending: pending,
-          id: uuid,
-          suites_id: parentUUID,
-          skipped: skipped,
+          testcase_id: uuid,
+          test_id: parentUUID,
+          is_skipped: skipped,
           err_message: code,
         }
         testCases.push(testCase)
