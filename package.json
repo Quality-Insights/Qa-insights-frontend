@@ -7,7 +7,7 @@
     "cypress:run": "cypress run",
     "test:ci": "cypress run",
     "test:ci:record": "cypress run --record",
-    "test": "node testRunner.js"
+    "test": "node src/testRunner.js"
   },
   "keywords": [],
   "author": "",
