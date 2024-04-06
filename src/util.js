@@ -7,7 +7,6 @@ function prepareResult(cypressResult) {
   const buildStats = {
     build_id: buildId,
     startdatetime: stats.start,
-    enddatetime: stats.end,
     duration: stats.duration,
     suitescount: stats.suites,
     tescount: stats.tests,
@@ -25,7 +24,7 @@ function prepareResult(cypressResult) {
   const testCases = [];
 
   for(const result of results) {
-    const { file, suites } = result;
+    const { suites } = result;
 
     for(const suite of suites) {
       const { uuid, title, duration, tests: rawTests } = suite;
@@ -34,7 +33,6 @@ function prepareResult(cypressResult) {
         test_id: uuid,
         name: title,
         duration: duration,
-        file: file,
         build_id: buildId
       }
       tests.push(test);
